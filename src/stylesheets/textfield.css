@@ -1,0 +1,9 @@
+.fullWidth {
+  width: 70%;
+}
+.textArea {
+  font: 1.25rem / 1.5 sans-serif;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+}
