@@ -1,0 +1,87 @@
+.github-card {
+  background-color: #24292e;
+  color: #fff;
+  border-radius: 2rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  max-height: 25rem;
+}
+
+.headerCardContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+
+.githubCardHeaderImage {
+  width: 7rem;
+  height:7rem;
+  width: 20%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+
+}
+
+.githubCardHeaderImage img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.cardContent h1 {
+  font-size: 1rem;
+}
+
+.cardContent p {
+  font-size: 0.9rem;
+  overflow-wrap: break-word;
+}
+
+.github-card-body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.github-card-metric {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+}
+
+.github-card-metric img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.github-card-footer {
+  text-align: center;
+}
+
+.github-card-footer a {
+  background-color: #fff;
+  color: #24292e;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.github-card-footer a:hover {
+  background-color: #eee;
+}

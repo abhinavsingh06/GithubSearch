@@ -2,8 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 0;
-  position: fixed;
+  /* top: 0;
+  position: fixed; */
 }
 
 .imageWrapper {

@@ -1,46 +1,28 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import { Header } from "../components/Header";
 import { SortDropdown } from "../components/SortDropdown";
 import { TextField } from "../components/TextField";
 import "../stylesheets/home.css";
 import { RepoCard } from "../components/RepoCard";
+import {useFetchRepos} from "../hooks/useFetchRepos"
 
-const PAGE_SIZE = 6;
+const PAGE_SIZE = 20;
 
 export const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [repos, setRepos] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchRepos = async () => {
-      if (!searchTerm) {
-        return;
-      }
-
-      const url = `https://api.github.com/search/repositories?q=${searchTerm}&sort=stars&order=desc&page=${currentPage}&per_page=6`;
-      const headers = {
-        Authorization: process.env.ACCESS_TOKEN,
-      };
-      try {
-        const response = await axios.get(url, { headers });
-        setRepos((prevRepos) => [...prevRepos, ...response.data.items]);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchRepos();
-  }, [searchTerm, currentPage]);
+  useFetchRepos(searchTerm, currentPage, setRepos, setLoading);
 
   const handleSearch = () => {
     setCurrentPage(1);
   };
 
-  function handleInputChange(event) {
+  const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
-  }
+  };
 
   const handleKeyUp = (event) => {
     if (event.key === "Enter") {
@@ -79,7 +61,7 @@ export const Home = () => {
         />
         <SortDropdown />
       </section>
-      <section>
+      <section className="repoCardWrapper">
         {currentRepos.map((repo, index) => (
           <RepoCard key={index} data={repo} />
         ))}
@@ -99,9 +81,13 @@ export const Home = () => {
                 {index + 1}
               </button>
             ))}
-        <button onClick={handleNextClick} disabled={repos.length !== PAGE_SIZE}>
+        <button
+          onClick={handleNextClick}
+          disabled={loading || currentRepos.length !== PAGE_SIZE}
+        >
           Next
         </button>
+        {loading && <p>Loading...</p>}
       </div>
     </>
   );
