@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import axios from "axios";
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 100;
 const DEBOUNCE_DELAY = 500;
 
 export const useFetchRepos = (
@@ -48,7 +48,6 @@ export const useFetchRepos = (
           }
         });
 
-        // setRepos((prevRepos) => [...prevRepos, ...response.data.items]);
         setRepos(sortedRepos);
         setLoading(false);
       } catch (error) {

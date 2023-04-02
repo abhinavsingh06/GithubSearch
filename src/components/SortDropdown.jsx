@@ -1,32 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 
 const SortDropdown = ({ handleSortChange, sortBy }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleItemClick = (sortType) => {
-    setIsOpen(false);
+  const handleSelectChange = (event) => {
+    const sortType = event.target.value;
     handleSortChange(sortType);
   };
 
   return (
     <div className="dropdown">
-      <button className="dropdown-button" onClick={toggleDropdown}>
-        Sort By: {sortBy}
-      </button>
-      {isOpen && (
-        <ul className="dropdown-menu">
-          <li onClick={() => handleItemClick("stars")}>Stars</li>
-          <li onClick={() => handleItemClick("watchers")}>Watchers</li>
-          <li onClick={() => handleItemClick("score")}>Score</li>
-          <li onClick={() => handleItemClick("name")}>Name</li>
-          <li onClick={() => handleItemClick("created_at")}>Created At</li>
-          <li onClick={() => handleItemClick("updated_at")}>Updated At</li>
-        </ul>
-      )}
+      <label htmlFor="sort-select">Sort By: </label>
+      <select id="sort-select" value={sortBy} onChange={handleSelectChange}>
+        <option value="stars">Stars</option>
+        <option value="watchers">Watchers</option>
+        <option value="score">Score</option>
+        <option value="name">Name</option>
+        <option value="created_at">Created At</option>
+        <option value="updated_at">Updated At</option>
+      </select>
     </div>
   );
 };

@@ -60,21 +60,23 @@ export const Home = () => {
 
   return (
     <>
-      <Header />
-      <section className="inputWrapper">
-        <TextField
-          searchTerm={searchTerm}
-          handleInputChange={handleInputChange}
-          handleKeyUp={handleKeyUp}
-        />
-        <SortDropdown handleSortChange={handleSortChange} sortBy={sortBy} />
+      <section className="headerWrapper">
+        <Header />
+        <section className="inputWrapper">
+          <TextField
+            searchTerm={searchTerm}
+            handleInputChange={handleInputChange}
+            handleKeyUp={handleKeyUp}
+          />
+          <SortDropdown handleSortChange={handleSortChange} sortBy={sortBy} />
+        </section>
       </section>
       <section className="repoCardWrapper">
         {currentRepos.map((repo, index) => (
           <RepoCard key={index} data={repo} />
         ))}
       </section>
-      <div>
+      <section className="paginationWrapper">
         <button onClick={handlePreviousClick}>Previous</button>
         {repos.length > 0 &&
           Array(Math.ceil(repos.length / PAGE_SIZE))
@@ -95,7 +97,7 @@ export const Home = () => {
         >
           Next
         </button>
-      </div>
+      </section>
     </>
   );
 };
